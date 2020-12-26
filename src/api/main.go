@@ -2,14 +2,23 @@ package main
 
 import (
 	"api/grpcGeneratedCode"
+	"api/router"
 	"context"
 	"fmt"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"google.golang.org/grpc"
 	"log"
 )
 
 
 func main(){
+
+	app := fiber.New()
+	app.Use(cors.New())
+
+	router.SetupRoutes(app)
+	log.Fatal(app.Listen(":3000"))
 
 
 	conn, err := grpc.Dial(":1111",grpc.WithInsecure())
