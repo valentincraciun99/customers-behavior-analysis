@@ -1,4 +1,8 @@
 //python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/main.proto
+//protoc --proto_path=protos ./protos/*.proto --go_out=plugins=grpc:api/grpc
+//rename go package
+
+
 
 syntax = "proto3";
 
