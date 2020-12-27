@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/database"
 	"api/grpcGeneratedCode"
 	"api/router"
 	"context"
@@ -11,31 +12,30 @@ import (
 	"log"
 )
 
-
-func main(){
+func main() {
 
 	app := fiber.New()
 	app.Use(cors.New())
 
+	database.Connect()
+	database.Migrate()
+
 	router.SetupRoutes(app)
 	log.Fatal(app.Listen(":3000"))
 
-
-	conn, err := grpc.Dial(":1111",grpc.WithInsecure())
+	conn, err := grpc.Dial(":1111", grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("could not connect: %s",err)
+		log.Fatalf("could not connect: %s", err)
 	}
 
 	defer conn.Close()
 
 	c := grpcGeneratedCode.NewTestServiceClient(conn)
 
-	request:= &grpcGeneratedCode.TestRequest{Number: 15,Text: "abc"}
+	request := &grpcGeneratedCode.TestRequest{Number: 15, Text: "abc"}
 
-	response,err := c.TestMethod(context.Background(),request)
+	response, err := c.TestMethod(context.Background(), request)
 
 	fmt.Println(response)
-
-
 
 }
