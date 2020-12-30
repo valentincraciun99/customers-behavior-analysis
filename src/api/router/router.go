@@ -10,12 +10,14 @@ func SetupRoutes(app *fiber.App) {
 	// Middleware
 	api := app.Group("/api", logger.New())
 	api.Get("/", handler.Hello)
+	api.Get("/data", handler.AddDataset)
 
 	// Auth
 
-
 	// User
-	user:= api.Group("/user")
-	user.Get("/:id",handler.GetUser)
+	user := api.Group("/user")
+	user.Get("/:id", handler.GetUser)
+	user.Post("/create", handler.CreateUser)
+	user.Post("/delete", handler.DeleteUser)
 
 }

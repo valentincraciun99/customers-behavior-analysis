@@ -18,6 +18,7 @@ func main() {
 	app.Use(cors.New())
 
 	database.Connect()
+	defer database.DBConn.Close()
 	database.Migrate()
 
 	router.SetupRoutes(app)

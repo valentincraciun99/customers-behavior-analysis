@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"api/database"
+	"api/database/services"
 	"api/model"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
@@ -8,11 +10,48 @@ import (
 
 func GetUser(c *fiber.Ctx) error {
 	id := c.Params("id")
-	fmt.Println(c.IP())
-	user:= &model.User{Username: id,Password:"password", Email: "sanky@yahoo.eu",Name: "Zon"}
 
-	if user.Username == "" {
-		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No user found with ID", "data": nil})
+	user, err := services.GetUser(id)
+
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
 	}
-	return c.JSON(fiber.Map{"status": "success", "message": "User found", "data": user})
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Data found", "data": user})
+}
+
+func CreateUser(c *fiber.Ctx) error {
+	user := &model.User{}
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	if err := services.CreateUser(user); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "User created", "data": user})
+}
+
+func DeleteUser(c *fiber.Ctx) error {
+	user := &model.User{}
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	services.DeleteUser(fmt.Sprint(user.ID))
+
+	return c.JSON(fiber.Map{"status": "success", "message": "User deleted!", "data": nil})
+}
+
+func AddDataset(c *fiber.Ctx) error {
+	user, _ := services.GetUserWithDatasets("11")
+
+	//user.Datasets = append(user.Datasets, model.Dataset{Data: []byte{1,2,3,4,5,1,1,1,2,3,2,1,2}})
+
+	database.DBConn.Model(&user).Association("Datasets").Append(model.Dataset{Data: []byte{1, 24, 5, 5, 5, 52, 2, 1}})
+
+	return c.JSON(fiber.Map{"status": "success", "message": "User created", "data": user})
 }
