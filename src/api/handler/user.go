@@ -41,9 +41,27 @@ func DeleteUser(c *fiber.Ctx) error {
 		return c.Status(503).SendString(err.Error())
 	}
 
-	services.DeleteUser(fmt.Sprint(user.ID))
+	var err = services.DeleteUser(fmt.Sprint(user.ID))
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
 
 	return c.JSON(fiber.Map{"status": "success", "message": "User deleted!", "data": nil})
+}
+
+func UpdateUser(c *fiber.Ctx) error {
+	user := &model.User{}
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	if err := services.UpdateUser(user); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "User updated!", "data": nil})
+
 }
 
 func AddDataset(c *fiber.Ctx) error {

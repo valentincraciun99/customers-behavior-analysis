@@ -30,3 +30,9 @@ func DeleteUser(id string) error {
 
 	return db.Error
 }
+
+func UpdateUser(user *model.User) error {
+
+	db := database.DBConn.Save(&user)
+	return db.Error
+}
