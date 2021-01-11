@@ -3,7 +3,8 @@ package handler
 import (
 	"api/database"
 	"api/database/services"
-	"api/model"
+	"api/model/dataset"
+	user2 "api/model/user"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 )
@@ -21,7 +22,7 @@ func GetUser(c *fiber.Ctx) error {
 }
 
 func CreateUser(c *fiber.Ctx) error {
-	user := &model.User{}
+	user := &user2.User{}
 
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(503).SendString(err.Error())
@@ -35,7 +36,7 @@ func CreateUser(c *fiber.Ctx) error {
 }
 
 func DeleteUser(c *fiber.Ctx) error {
-	user := &model.User{}
+	user := &user2.User{}
 
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(503).SendString(err.Error())
@@ -50,7 +51,7 @@ func DeleteUser(c *fiber.Ctx) error {
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	user := &model.User{}
+	user := &user2.User{}
 
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(503).SendString(err.Error())
@@ -69,7 +70,7 @@ func AddDataset(c *fiber.Ctx) error {
 
 	//user.Datasets = append(user.Datasets, model.Dataset{Data: []byte{1,2,3,4,5,1,1,1,2,3,2,1,2}})
 
-	database.DBConn.Model(&user).Association("Datasets").Append(model.Dataset{Data: []byte{1, 24, 5, 5, 5, 52, 2, 1}})
+	database.DBConn.Model(&user).Association("Datasets").Append(dataset.Dataset{Data: []byte{1, 24, 5, 5, 5, 52, 2, 1}})
 
 	return c.JSON(fiber.Map{"status": "success", "message": "User created", "data": user})
 }

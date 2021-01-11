@@ -1,7 +1,8 @@
 package database
 
 import (
-	"api/model"
+	"api/model/dataset"
+	user2 "api/model/user"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -35,8 +36,8 @@ func Connect() {
 
 func Migrate() {
 
-	DBConn.AutoMigrate(&model.User{}, &model.Dataset{})
-	db := DBConn.Model(&model.Dataset{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
+	DBConn.AutoMigrate(&user2.User{}, &dataset.Dataset{})
+	db := DBConn.Model(&dataset.Dataset{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
 	fmt.Println(db.Error)
 
 	fmt.Println("Database Migrated ")
