@@ -17,5 +17,19 @@ func CreateDataset(c *fiber.Ctx) error {
 		return c.Status(503).SendString(err.Error())
 	}
 
-	return c.JSON(fiber.Map{"status": "success", "message": "User created", "data": nil})
+	return c.JSON(fiber.Map{"status": "success", "message": "Dataset created", "data": nil})
+}
+
+func DeleteDataset(c *fiber.Ctx) error {
+	dataset := &dataset2.Dataset{}
+
+	if err := c.BodyParser(&dataset); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	if err := services.DeleteDataset(dataset); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Dataset deleted", "data": nil})
 }
