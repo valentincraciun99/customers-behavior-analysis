@@ -33,3 +33,14 @@ func DeleteDataset(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Dataset deleted", "data": nil})
 }
+
+func GetDatasetByID(c *fiber.Ctx) error {
+	id := c.Params("id")
+	dataset, err := services.GetDatasetByID(id)
+
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Data found", "data": dataset})
+}
