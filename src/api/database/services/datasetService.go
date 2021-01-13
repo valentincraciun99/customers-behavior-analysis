@@ -21,3 +21,10 @@ func GetDatasetByID(ID string) (*dataset.Dataset, error) {
 
 	return &data, err.Error
 }
+
+func GetDatasetsByUserID(ID uint) ([]*dataset.Dataset, error) {
+	var datasets []*dataset.Dataset
+	err := database.DBConn.Find(&datasets, dataset.Dataset{UserID: ID})
+
+	return datasets, err.Error
+}

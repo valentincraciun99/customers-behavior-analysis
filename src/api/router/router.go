@@ -26,5 +26,6 @@ func SetupRoutes(app *fiber.App) {
 	dataset.Post("/create", handler.CreateDataset)
 	dataset.Post("/delete", handler.DeleteDataset)
 	dataset.Get("/:id", handler.GetDatasetByID)
+	dataset.Post("/get-by-user-id", handler.GetDatasetsByUserId)
 
 }

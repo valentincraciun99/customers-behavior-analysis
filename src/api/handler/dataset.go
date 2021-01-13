@@ -44,3 +44,23 @@ func GetDatasetByID(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Data found", "data": dataset})
 }
+
+func GetDatasetsByUserId(c *fiber.Ctx) error {
+	dataset := &dataset2.Dataset{}
+
+	if err := c.BodyParser(&dataset); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	data, err := services.GetDatasetsByUserID(dataset.UserID)
+
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	if len(data) == 0 {
+		return c.Status(204).SendString("data not found")
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Dataset founded", "data": data})
+}
