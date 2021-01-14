@@ -1,5 +1,10 @@
-//python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/main.proto
+//python3 -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/main.proto
 //protoc --proto_path=protos ./protos/*.proto --go_out=plugins=grpc:api/grpc
+
+//new
+//protoc -I=./ --go_out=plugins=grpc:../api/grpcGeneratedCode ./*.proto
+//python3 -m grpc_tools.protoc -I=./ --python_out=../behavior-analysis-core/grpcGeneratedCode/ --grpc_python_out=../behavior-analysis-core/grpcGeneratedCode/ ./*.proto
+
 //rename go package
 syntax = "proto3";
 option go_package = "grpcGeneratedCode";
