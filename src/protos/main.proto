@@ -1,10 +1,10 @@
 //python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/main.proto
 //protoc --proto_path=protos ./protos/*.proto --go_out=plugins=grpc:api/grpc
 //rename go package
-
-
-
 syntax = "proto3";
+option go_package = "grpcGeneratedCode";
+
+
 
 service TestService{
 
@@ -18,6 +18,12 @@ service TestService2{
 	rpc testMethod2(TestRequest) returns (TestResponse){}	
 }
 
+
+message Dataset{
+	uint64 userId = 1;
+	string name = 2;
+	bytes data = 3;
+}
 
 
 message TestRequest{
