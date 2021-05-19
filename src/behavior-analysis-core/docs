@@ -1,0 +1,24 @@
+Implemented features:
+    Analysis:
+        Duplicates Entries -> data_analysis:
+            -count
+            -remove duplicates
+        Countries -> data_analysis:
+            -count
+
+
+
+    Utils:
+        Data Integrity -> data_analysis:
+            -verify data is DataFrame Instance
+
+
+
+
+Features:
+    linear regression for incomes   (1 day / 1 week / 1 year)
+
+
+    2.2 Customers and products
+    2.2.1 Cancelling orders
+    2.2.3 Basket price

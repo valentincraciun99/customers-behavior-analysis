@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import main_pb2 as main__pb2
+import grpcGeneratedCode.main_pb2 as main__pb2
 
 
 class TestServiceStub(object):
@@ -188,6 +188,100 @@ class TestService2(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/TestService2/testMethod2',
             main__pb2.TestRequest.SerializeToString,
+            main__pb2.TestResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class DataServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.ProcessesData = channel.unary_unary(
+                '/DataService/ProcessesData',
+                request_serializer=main__pb2.DatasetRequest.SerializeToString,
+                response_deserializer=main__pb2.TestResponse.FromString,
+                )
+        self.ProcessDataAsBase64 = channel.unary_unary(
+                '/DataService/ProcessDataAsBase64',
+                request_serializer=main__pb2.ProcessDataAsBase64Request.SerializeToString,
+                response_deserializer=main__pb2.TestResponse.FromString,
+                )
+
+
+class DataServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def ProcessesData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProcessDataAsBase64(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_DataServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'ProcessesData': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessesData,
+                    request_deserializer=main__pb2.DatasetRequest.FromString,
+                    response_serializer=main__pb2.TestResponse.SerializeToString,
+            ),
+            'ProcessDataAsBase64': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessDataAsBase64,
+                    request_deserializer=main__pb2.ProcessDataAsBase64Request.FromString,
+                    response_serializer=main__pb2.TestResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'DataService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class DataService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def ProcessesData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataService/ProcessesData',
+            main__pb2.DatasetRequest.SerializeToString,
+            main__pb2.TestResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ProcessDataAsBase64(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/DataService/ProcessDataAsBase64',
+            main__pb2.ProcessDataAsBase64Request.SerializeToString,
             main__pb2.TestResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
