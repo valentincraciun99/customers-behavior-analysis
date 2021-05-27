@@ -1,17 +1,36 @@
 package handler
 
 import (
+	"api/dataProcessing"
 	"api/database/services"
 	dataset2 "api/model/dataset"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 )
 
 func CreateDataset(c *fiber.Ctx) error {
 	dataset := &dataset2.Dataset{}
+	c.Attachment("Data")
+	fileHeader, _ := c.FormFile("Data")
+	associatedFile, err := fileHeader.Open()
 
-	if err := c.BodyParser(&dataset); err != nil {
+	if err != nil {
 		return c.Status(503).SendString(err.Error())
 	}
+
+	file := make([]byte, 104857600)
+	n, err := associatedFile.Read(file)
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	fmt.Printf(string(n))
+
+	if err := c.BodyParser(dataset); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	dataset.Data = file
 
 	if err := services.CreateDataset(dataset); err != nil {
 		return c.Status(503).SendString(err.Error())
@@ -63,4 +82,16 @@ func GetDatasetsByUserId(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Dataset founded", "data": data})
+}
+
+func ProcessDataset(c *fiber.Ctx) error {
+	//id, _ := strconv.ParseInt(c.Params("id"), 10, 32)
+	dataset, err := services.GetDatasetByID(c.Params("id"))
+	if err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	go dataProcessing.Compute(*dataset)
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Dataset founded", "data": nil})
 }

@@ -23,11 +23,38 @@ service TestService2{
 	rpc testMethod2(TestRequest) returns (TestResponse){}	
 }
 
+service DataService{
+	rpc ProcessesData(DatasetRequest) returns (DatasetResponse){}
+	rpc ProcessDataAsBase64(ProcessDataAsBase64Request) returns(TestResponse){}
+}
 
-message Dataset{
+
+message ProcessDataAsBase64Request{
+	uint64 userId = 1;
+	string name = 2;
+	string data = 3;
+}
+
+message DatasetRequest{
 	uint64 userId = 1;
 	string name = 2;
 	bytes data = 3;
+}
+
+message DatasetResponse{
+	Transactions transactions = 1;
+
+}
+
+message Transactions{
+	string dailyIncomePoints = 1;
+	string dailyIncomePrediction = 2;
+	string dailyIncomeTrend = 3;
+	uint64 numberOfTranzactions = 4;
+	double tranzactionsAvgPrice = 5;
+	double tranzactionsMinPrice = 6;
+	double tranzactionsMaxPrice = 7;
+	
 }
 
 

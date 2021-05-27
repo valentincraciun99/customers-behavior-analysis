@@ -36,8 +36,11 @@ func Connect() {
 
 func Migrate() {
 
-	DBConn.AutoMigrate(&user.User{}, &dataset.Dataset{})
+	DBConn.AutoMigrate(&user.User{}, &dataset.Dataset{}, dataset.Metadata{})
 	db := DBConn.Model(&dataset.Dataset{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
+	DBConn.Model(&dataset.Metadata{}).AddForeignKey("user_id", "users(id)", "CASCADE", "CASCADE")
+	DBConn.Model(&dataset.Metadata{}).AddForeignKey("dataset_id", "datasets(id)", "CASCADE", "CASCADE")
+
 	fmt.Println(db.Error)
 
 	fmt.Println("Database Migrated ")

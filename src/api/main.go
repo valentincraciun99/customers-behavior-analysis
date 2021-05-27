@@ -2,13 +2,9 @@ package main
 
 import (
 	"api/database"
-	"api/grpcGeneratedCode"
 	"api/router"
-	"context"
-	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"google.golang.org/grpc"
 	"log"
 )
 
@@ -20,11 +16,10 @@ func main() {
 	database.Connect()
 	defer database.DBConn.Close()
 	database.Migrate()
-
 	router.SetupRoutes(app)
 	log.Fatal(app.Listen(":3000"))
 
-	conn, err := grpc.Dial(":1111", grpc.WithInsecure())
+	/*conn, err := grpc.Dial("localhost:1111", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("could not connect: %s", err)
 	}
@@ -37,6 +32,6 @@ func main() {
 
 	response, err := c.TestMethod(context.Background(), request)
 
-	fmt.Println(response)
+	fmt.Println(response)*/
 
 }
