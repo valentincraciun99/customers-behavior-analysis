@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\021grpcGeneratedCode',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nmain.proto\"H\n\x1aProcessDataAsBase64Request\x12\x0e\n\x06userId\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"<\n\x0e\x44\x61tasetRequest\x12\x0e\n\x06userId\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"+\n\x0bTestRequest\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t\",\n\x0cTestResponse\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t2h\n\x0bTestService\x12+\n\ntestMethod\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x12,\n\x0btestMethod2\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x32i\n\x0cTestService2\x12+\n\ntestMethod\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x12,\n\x0btestMethod2\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x32\x85\x01\n\x0b\x44\x61taService\x12\x31\n\rProcessesData\x12\x0f.DatasetRequest\x1a\r.TestResponse\"\x00\x12\x43\n\x13ProcessDataAsBase64\x12\x1b.ProcessDataAsBase64Request\x1a\r.TestResponse\"\x00\x42\x13Z\x11grpcGeneratedCodeb\x06proto3'
+  serialized_pb=b'\n\nmain.proto\"H\n\x1aProcessDataAsBase64Request\x12\x0e\n\x06userId\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"<\n\x0e\x44\x61tasetRequest\x12\x0e\n\x06userId\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"6\n\x0f\x44\x61tasetResponse\x12#\n\x0ctransactions\x18\x01 \x01(\x0b\x32\r.Transactions\"\xda\x01\n\x0cTransactions\x12\x19\n\x11\x64\x61ilyIncomePoints\x18\x01 \x01(\t\x12\x1d\n\x15\x64\x61ilyIncomePrediction\x18\x02 \x01(\t\x12\x18\n\x10\x64\x61ilyIncomeTrend\x18\x03 \x01(\t\x12\x1c\n\x14numberOfTranzactions\x18\x04 \x01(\x04\x12\x1c\n\x14tranzactionsAvgPrice\x18\x05 \x01(\x01\x12\x1c\n\x14tranzactionsMinPrice\x18\x06 \x01(\x01\x12\x1c\n\x14tranzactionsMaxPrice\x18\x07 \x01(\x01\"+\n\x0bTestRequest\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t\",\n\x0cTestResponse\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t2h\n\x0bTestService\x12+\n\ntestMethod\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x12,\n\x0btestMethod2\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x32i\n\x0cTestService2\x12+\n\ntestMethod\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x12,\n\x0btestMethod2\x12\x0c.TestRequest\x1a\r.TestResponse\"\x00\x32\x88\x01\n\x0b\x44\x61taService\x12\x34\n\rProcessesData\x12\x0f.DatasetRequest\x1a\x10.DatasetResponse\"\x00\x12\x43\n\x13ProcessDataAsBase64\x12\x1b.ProcessDataAsBase64Request\x1a\r.TestResponse\"\x00\x42\x13Z\x11grpcGeneratedCodeb\x06proto3'
 )
 
 
@@ -117,6 +117,112 @@ _DATASETREQUEST = _descriptor.Descriptor(
 )
 
 
+_DATASETRESPONSE = _descriptor.Descriptor(
+  name='DatasetResponse',
+  full_name='DatasetResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='transactions', full_name='DatasetResponse.transactions', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=150,
+  serialized_end=204,
+)
+
+
+_TRANSACTIONS = _descriptor.Descriptor(
+  name='Transactions',
+  full_name='Transactions',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dailyIncomePoints', full_name='Transactions.dailyIncomePoints', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dailyIncomePrediction', full_name='Transactions.dailyIncomePrediction', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dailyIncomeTrend', full_name='Transactions.dailyIncomeTrend', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='numberOfTranzactions', full_name='Transactions.numberOfTranzactions', index=3,
+      number=4, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tranzactionsAvgPrice', full_name='Transactions.tranzactionsAvgPrice', index=4,
+      number=5, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tranzactionsMinPrice', full_name='Transactions.tranzactionsMinPrice', index=5,
+      number=6, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tranzactionsMaxPrice', full_name='Transactions.tranzactionsMaxPrice', index=6,
+      number=7, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=207,
+  serialized_end=425,
+)
+
+
 _TESTREQUEST = _descriptor.Descriptor(
   name='TestRequest',
   full_name='TestRequest',
@@ -151,8 +257,8 @@ _TESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=150,
-  serialized_end=193,
+  serialized_start=427,
+  serialized_end=470,
 )
 
 
@@ -190,12 +296,15 @@ _TESTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=195,
-  serialized_end=239,
+  serialized_start=472,
+  serialized_end=516,
 )
 
+_DATASETRESPONSE.fields_by_name['transactions'].message_type = _TRANSACTIONS
 DESCRIPTOR.message_types_by_name['ProcessDataAsBase64Request'] = _PROCESSDATAASBASE64REQUEST
 DESCRIPTOR.message_types_by_name['DatasetRequest'] = _DATASETREQUEST
+DESCRIPTOR.message_types_by_name['DatasetResponse'] = _DATASETRESPONSE
+DESCRIPTOR.message_types_by_name['Transactions'] = _TRANSACTIONS
 DESCRIPTOR.message_types_by_name['TestRequest'] = _TESTREQUEST
 DESCRIPTOR.message_types_by_name['TestResponse'] = _TESTRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -213,6 +322,20 @@ DatasetRequest = _reflection.GeneratedProtocolMessageType('DatasetRequest', (_me
   # @@protoc_insertion_point(class_scope:DatasetRequest)
   })
 _sym_db.RegisterMessage(DatasetRequest)
+
+DatasetResponse = _reflection.GeneratedProtocolMessageType('DatasetResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DATASETRESPONSE,
+  '__module__' : 'main_pb2'
+  # @@protoc_insertion_point(class_scope:DatasetResponse)
+  })
+_sym_db.RegisterMessage(DatasetResponse)
+
+Transactions = _reflection.GeneratedProtocolMessageType('Transactions', (_message.Message,), {
+  'DESCRIPTOR' : _TRANSACTIONS,
+  '__module__' : 'main_pb2'
+  # @@protoc_insertion_point(class_scope:Transactions)
+  })
+_sym_db.RegisterMessage(Transactions)
 
 TestRequest = _reflection.GeneratedProtocolMessageType('TestRequest', (_message.Message,), {
   'DESCRIPTOR' : _TESTREQUEST,
@@ -238,8 +361,8 @@ _TESTSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=241,
-  serialized_end=345,
+  serialized_start=518,
+  serialized_end=622,
   methods=[
   _descriptor.MethodDescriptor(
     name='testMethod',
@@ -274,8 +397,8 @@ _TESTSERVICE2 = _descriptor.ServiceDescriptor(
   index=1,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=347,
-  serialized_end=452,
+  serialized_start=624,
+  serialized_end=729,
   methods=[
   _descriptor.MethodDescriptor(
     name='testMethod',
@@ -310,8 +433,8 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   index=2,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=455,
-  serialized_end=588,
+  serialized_start=732,
+  serialized_end=868,
   methods=[
   _descriptor.MethodDescriptor(
     name='ProcessesData',
@@ -319,7 +442,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_DATASETREQUEST,
-    output_type=_TESTRESPONSE,
+    output_type=_DATASETRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -205,7 +205,7 @@ class DataServiceStub(object):
         self.ProcessesData = channel.unary_unary(
                 '/DataService/ProcessesData',
                 request_serializer=main__pb2.DatasetRequest.SerializeToString,
-                response_deserializer=main__pb2.TestResponse.FromString,
+                response_deserializer=main__pb2.DatasetResponse.FromString,
                 )
         self.ProcessDataAsBase64 = channel.unary_unary(
                 '/DataService/ProcessDataAsBase64',
@@ -235,7 +235,7 @@ def add_DataServiceServicer_to_server(servicer, server):
             'ProcessesData': grpc.unary_unary_rpc_method_handler(
                     servicer.ProcessesData,
                     request_deserializer=main__pb2.DatasetRequest.FromString,
-                    response_serializer=main__pb2.TestResponse.SerializeToString,
+                    response_serializer=main__pb2.DatasetResponse.SerializeToString,
             ),
             'ProcessDataAsBase64': grpc.unary_unary_rpc_method_handler(
                     servicer.ProcessDataAsBase64,
@@ -265,7 +265,7 @@ class DataService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/DataService/ProcessesData',
             main__pb2.DatasetRequest.SerializeToString,
-            main__pb2.TestResponse.FromString,
+            main__pb2.DatasetResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
